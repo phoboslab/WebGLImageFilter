@@ -499,7 +499,7 @@ var WebGLImageFilter = window.WebGLImageFilter = function() {
 	};
 
 	_filter.emboss = function( size ) {
-		var s = strength || 1;
+		var s = size || 1;
 		_filter.convolution.call(this, [
 			-2*s, -1*s, 0,
 			-1*s, 1, 1*s,
