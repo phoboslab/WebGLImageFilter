@@ -97,12 +97,6 @@ var WebGLImageFilter = window.WebGLImageFilter = function() {
 		_resize( image.width, image.height );
 		_drawCount = 0;
 
-		// No filters? Just draw
-		if( _filterChain.length == 0 ) {
-			var program = _compileShader(SHADER.FRAGMENT_IDENTITY);
-			_draw();
-		}
-
 		// Create the texture for the input image
 		_sourceTexture = gl.createTexture();
 		gl.bindTexture(gl.TEXTURE_2D, _sourceTexture);
@@ -111,6 +105,13 @@ var WebGLImageFilter = window.WebGLImageFilter = function() {
 		gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
 		gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST); 
 		gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
+
+		// No filters? Just draw
+		if( _filterChain.length == 0 ) {
+			var program = _compileShader(SHADER.FRAGMENT_IDENTITY);
+			_draw();
+			return _canvas;
+		}
 
 		for( var i = 0; i < _filterChain.length; i++ ) {
 			_lastInChain = (i == _filterChain.length-1);
