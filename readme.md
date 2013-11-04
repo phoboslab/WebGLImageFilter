@@ -39,12 +39,12 @@ filter.reset();
 
 ### Filters ###
 
-## Main filters ##
+#### Main filters ####
 - `colorMatrix( matrix )` apply a the 5x5 color matrix (`Array[20]`), similar to Flash's ColorMatrixFilter
 - `convolution( matrix )` apply a 3x3 convolution matrix (`Array[9]`)
 - `blur( size )` blur with size in pixels
 
-## Presets using the main filters ##
+#### Presets using the main filters ####
 - `brightness( amount )` change brightness. `1` increases the it two fold, `-1` halfes it
 - `saturation( amount )` change saturation. `1` increases the it two fold, `-1` halfes it
 - `contrast( amount )` change contrast. `1` increases the it two fold, `-1` halfes it
