@@ -21,7 +21,7 @@ try {
 	var filter = new WebGLImageFilter();
 }
 catch( err ) {
-	// Handle browser's that don't have WebGL support
+	// Handle browsers that don't support WebGL
 }
 
 filter.addFilter('hue', 180);
