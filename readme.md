@@ -5,7 +5,7 @@ WebGLImageFilter
 
 Demo: [phoboslab.org/log/2013/11/webgl-image-filter](http://phoboslab.org/log/2013/11/fast-image-filters-with-webgl)
 
-Construct a chain of image filters and apply them on an Image or Canvas. All filters are executed as WebGL Shaders which makes them pretty fast.
+Construct a chain of image filters and apply them to an Image or Canvas element. All filters are executed by WebGL Shaders which makes them pretty fast.
 
 Please also have a look at the excellent [glfx.js](https://github.com/evanw/glfx.js) by @evanw.
 
@@ -13,8 +13,8 @@ Please also have a look at the excellent [glfx.js](https://github.com/evanw/glfx
 ### Usage ###
 
 ```javascript
-// Synopsis: create the filter object, add filters to it and run
-// it on an image
+// Synopsis: create the filter object, add filters to it and apply
+// it to an image
 
 // Example:
 try {
@@ -39,12 +39,12 @@ filter.reset();
 
 ### Filters ###
 
-Main filters
-- `colorMatrix( matrix );` apply a the 5x5 color matrix (`Array[20]`), similar to Flash's ColorMatrixFilter
+## Main filters ##
+- `colorMatrix( matrix )` apply a the 5x5 color matrix (`Array[20]`), similar to Flash's ColorMatrixFilter
 - `convolution( matrix )` apply a 3x3 convolution matrix (`Array[9]`)
-- `blur( size );` blur with size in pixels
+- `blur( size )` blur with size in pixels
 
-Presets for the main filters
+## Presets using the main filters ##
 - `brightness( amount )` change brightness. `1` increases the it two fold, `-1` halfes it
 - `saturation( amount )` change saturation. `1` increases the it two fold, `-1` halfes it
 - `contrast( amount )` change contrast. `1` increases the it two fold, `-1` halfes it
