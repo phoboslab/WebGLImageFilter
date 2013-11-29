@@ -438,6 +438,24 @@ var WebGLImageFilter = window.WebGLImageFilter = function() {
 		]);
 	};
 
+	_filter.polaroid = function() {
+		_filter.colorMatrix([
+			1.438,-0.062,-0.062,0,0,
+			-0.122,1.378,-0.122,0,0,
+			-0.016,-0.016,1.483,0,0,
+			0,0,0,1,0
+		]);
+	};
+
+	_filter.shiftToBGR = function() {
+		_filter.colorMatrix([
+			0,0,1,0,0,
+			0,1,0,0,0,
+			1,0,0,0,0,
+			0,0,0,1,0
+		]);
+	};
+
 
 	// ----------------------------------------------------------------------------
 	// Convolution Filter
