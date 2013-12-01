@@ -60,4 +60,6 @@ filter.reset();
 - `detectEdges()` detect edges
 - `sharpen( amount )` sharpen
 - `emboss( size )` emboss effect with size in pixels
+- `polaroid()` polaroid camera effect
+- `shiftToBGR()` shift colors from RGB to BGR
 
