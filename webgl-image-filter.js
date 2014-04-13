@@ -133,7 +133,7 @@ var WebGLImageFilter = window.WebGLImageFilter = function() {
 
 		// Create the context if we don't have it yet
 		if( !_vertexBuffer ) {
-			// Create the vertex buffer for the two triangles [x, y, v, w] * 6
+			// Create the vertex buffer for the two triangles [x, y, u, v] * 6
 			var vertices = new Float32Array([
 				-1, -1, 0, 1,  1, -1, 1, 1,  -1, 1, 0, 0,
 				-1, 1, 0, 0,  1, -1, 1, 1,  1, 1, 1, 0
