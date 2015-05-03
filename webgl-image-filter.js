@@ -508,6 +508,15 @@ var WebGLImageFilter = window.WebGLImageFilter = function() {
 		]);
 	};
 
+        _filter.sobelX = function() {
+                _filter.convolution.call(this, [
+                        -1, 0, 1,
+                        -2, 0, 2,
+                        -1, 0, 1
+                ]);
+        };
+
+
 	_filter.sharpen = function( amount ) {
 		var a = amount || 1;
 		_filter.convolution.call(this, [
