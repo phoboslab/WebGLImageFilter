@@ -58,8 +58,9 @@ filter.reset();
 - `kodachrome()` vintage colors
 - `technicolor()` vintage colors
 - `detectEdges()` detect edges
+- `sobelX()` detect edges using a horizontal sobel operator
+- `sobelY()` detect edges using a vertical sobel operator
 - `sharpen( amount )` sharpen
 - `emboss( size )` emboss effect with size in pixels
 - `polaroid()` polaroid camera effect
 - `shiftToBGR()` shift colors from RGB to BGR
-
