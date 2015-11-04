@@ -3,6 +3,8 @@ WebGLImageFilter
 
 #### Fast image filters for Browsers with WebGL support ####
 
+MIT License
+
 Demo: [phoboslab.org/log/2013/11/webgl-image-filter](http://phoboslab.org/log/2013/11/fast-image-filters-with-webgl)
 
 Construct a chain of image filters and apply them to an Image or Canvas element. All filters are executed by WebGL Shaders which makes them pretty fast.
