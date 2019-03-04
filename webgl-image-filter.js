@@ -503,7 +503,7 @@ var WebGLImageFilter = window.WebGLImageFilter = function() {
 	_filter.detectEdges = function() {
 		_filter.convolution.call(this, [
 			0, 1, 0,
-			1 -4, 1,
+			1, -4, 1,
 			0, 1, 0
 		]);
 	};
