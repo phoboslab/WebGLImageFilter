@@ -276,7 +276,7 @@ var WebGLImageFilter = window.WebGLImageFilter = function() {
 
 
 
-	// ----------------------------------------------------------------------------
+	// -------------------------------------------------------------------------
 	// Color Matrix Filter
 
 	_filter.colorMatrix = function( matrix ) {
@@ -377,10 +377,10 @@ var WebGLImageFilter = window.WebGLImageFilter = function() {
 			lumB = 0.072;
 
 		_filter.colorMatrix([
-				lumR+cos*(1-lumR)+sin*(-lumR),lumG+cos*(-lumG)+sin*(-lumG),lumB+cos*(-lumB)+sin*(1-lumB),0,0,
-				lumR+cos*(-lumR)+sin*(0.143),lumG+cos*(1-lumG)+sin*(0.140),lumB+cos*(-lumB)+sin*(-0.283),0,0,
-				lumR+cos*(-lumR)+sin*(-(1-lumR)),lumG+cos*(-lumG)+sin*(lumG),lumB+cos*(1-lumB)+sin*(lumB),0,0,
-				0, 0, 0, 1, 0
+			lumR+cos*(1-lumR)+sin*(-lumR),lumG+cos*(-lumG)+sin*(-lumG),lumB+cos*(-lumB)+sin*(1-lumB),0,0,
+			lumR+cos*(-lumR)+sin*(0.143),lumG+cos*(1-lumG)+sin*(0.140),lumB+cos*(-lumB)+sin*(-0.283),0,0,
+			lumR+cos*(-lumR)+sin*(-(1-lumR)),lumG+cos*(-lumG)+sin*(lumG),lumB+cos*(1-lumB)+sin*(lumB),0,0,
+			0, 0, 0, 1, 0
 		]);
 	};
 
@@ -457,7 +457,7 @@ var WebGLImageFilter = window.WebGLImageFilter = function() {
 	};
 
 
-	// ----------------------------------------------------------------------------
+	// -------------------------------------------------------------------------
 	// Convolution Filter
 
 	_filter.convolution = function( matrix ) {
@@ -508,21 +508,21 @@ var WebGLImageFilter = window.WebGLImageFilter = function() {
 		]);
 	};
 
-        _filter.sobelX = function() {
-                _filter.convolution.call(this, [
-                        -1, 0, 1,
-                        -2, 0, 2,
-                        -1, 0, 1
-                ]);
-        };
+	_filter.sobelX = function() {
+		_filter.convolution.call(this, [
+			-1, 0, 1,
+			-2, 0, 2,
+			-1, 0, 1
+		]);
+	};
 
-        _filter.sobelY = function() {
-                _filter.convolution.call(this, [
-                        -1, -2, -1,
-                         0,  0,  0,
-                         1,  2,  1
-                ]);
-        };
+	_filter.sobelY = function() {
+		_filter.convolution.call(this, [
+			-1, -2, -1,
+			 0,  0,  0,
+			 1,  2,  1
+		]);
+	};
 
 	_filter.sharpen = function( amount ) {
 		var a = amount || 1;
@@ -543,7 +543,7 @@ var WebGLImageFilter = window.WebGLImageFilter = function() {
 	};
 
 
-	// ----------------------------------------------------------------------------
+	// -------------------------------------------------------------------------
 	// Blur Filter
 
 	_filter.blur = function( size ) {
