@@ -61,7 +61,10 @@ var WebGLProgram = function( gl, vertexSource, fragmentSource ) {
 };
 
 
-var WebGLImageFilter = window.WebGLImageFilter = function() {
+var WebGLImageFilter = window.WebGLImageFilter = function (params) {
+	if (!params)
+		params = { };
+
 	var 
 		gl = null,
 		_drawCount = 0,
@@ -74,11 +77,11 @@ var WebGLImageFilter = window.WebGLImageFilter = function() {
 		_height = -1,
 		_vertexBuffer = null,
 		_currentProgram = null,
-		_canvas = document.createElement('canvas');
+		_canvas = params.canvas || document.createElement('canvas');
 
 	// key is the shader program source, value is the compiled program
 	var _shaderProgramCache = { };
-	
+
 	var gl = _canvas.getContext("webgl") || _canvas.getContext("experimental-webgl");
 	if( !gl ) {
 		throw "Couldn't get WebGL context";

@@ -40,6 +40,28 @@ var filteredImage = filter.apply(inputImage);
 filter.reset();
 ```
 
+#### Using an Existing Canvas element
+
+Internally, WebGLImageFilter creates one canvas element, which is what the output filtered result is written to.
+If you have an existing `canvas` element that you want to render to, you can configure WebGLImageFilter to use it:
+
+```javascript
+
+try {
+	// in this case, filteredImage is an existing html canvas
+	var filter = new WebGLImageFilter({ canvas: filteredImage });
+}
+catch( err ) { }
+
+// .. filters setup here
+
+filter.apply(inputImage); 
+
+// at this point, filteredImage has already been updated
+
+```
+
+
 ### Filters ###
 
 #### Main filters ####
