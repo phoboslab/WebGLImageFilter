@@ -67,7 +67,8 @@ filter.apply(inputImage);
 #### Main filters ####
 - `colorMatrix( matrix )` apply a the 5x5 color matrix (`Array[20]`), similar to Flash's ColorMatrixFilter
 - `convolution( matrix )` apply a 3x3 convolution matrix (`Array[9]`)
-- `blur( size )` blur with size in pixels
+- `blur( radius )` blur with radius in pixels
+
 
 #### Presets using the main filters ####
 - `brightness( amount )` change brightness. `1` increases the it two fold, `-1` halves it
@@ -89,7 +90,6 @@ filter.apply(inputImage);
 - `emboss( size )` emboss effect with size in pixels
 - `polaroid()` polaroid camera effect
 - `shiftToBGR()` shift colors from RGB to BGR
-
 
 
 #### License
