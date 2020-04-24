@@ -1,13 +1,12 @@
 WebGLImageFilter
 ==========
 
-#### Fast image filters for Browsers with WebGL support ####
+Construct a chain of image filters and apply them to an Image or Canvas element.
+All filters are executed by WebGL Shaders which makes them pretty fast.
 
-MIT License
 
 Demo: [phoboslab.org/log/2013/11/webgl-image-filter](http://phoboslab.org/log/2013/11/fast-image-filters-with-webgl)
 
-Construct a chain of image filters and apply them to an Image or Canvas element. All filters are executed by WebGL Shaders which makes them pretty fast.
 
 Please also have a look at the excellent [glfx.js](https://github.com/evanw/glfx.js) by @evanw.
 
@@ -29,6 +28,8 @@ catch( err ) {
 filter.addFilter('hue', 180);
 filter.addFilter('negative');
 filter.addFilter('blur', 7);
+
+// inputImage may be an Image, or even an HTML Canvas!
 var filteredImage = filter.apply(inputImage);
 
 // The 'filteredImage' is a canvas element. You can draw it on a 2D canvas
@@ -66,3 +67,7 @@ filter.reset();
 - `emboss( size )` emboss effect with size in pixels
 - `polaroid()` polaroid camera effect
 - `shiftToBGR()` shift colors from RGB to BGR
+
+
+
+MIT License
