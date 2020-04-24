@@ -48,9 +48,9 @@ filter.reset();
 - `blur( size )` blur with size in pixels
 
 #### Presets using the main filters ####
-- `brightness( amount )` change brightness. `1` increases the it two fold, `-1` halfes it
-- `saturation( amount )` change saturation. `1` increases the it two fold, `-1` halfes it
-- `contrast( amount )` change contrast. `1` increases the it two fold, `-1` halfes it
+- `brightness( amount )` change brightness. `1` increases the it two fold, `-1` halves it
+- `saturation( amount )` change saturation. `1` increases the it two fold, `-1` halves it
+- `contrast( amount )` change contrast. `1` increases the it two fold, `-1` halves it
 - `negative()` invert colors
 - `hue( rotation )` rotate the hue, values are `0-360`
 - `desaturate()` desaturate the image by all channels equally
@@ -70,4 +70,5 @@ filter.reset();
 
 
 
-MIT License
+#### License
+MIT
