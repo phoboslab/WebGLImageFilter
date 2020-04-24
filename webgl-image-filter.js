@@ -76,6 +76,9 @@ var WebGLImageFilter = window.WebGLImageFilter = function() {
 		_currentProgram = null,
 		_canvas = document.createElement('canvas');
 
+	// key is the shader program source, value is the compiled program
+	var _shaderProgramCache = { };
+	
 	var gl = _canvas.getContext("webgl") || _canvas.getContext("experimental-webgl");
 	if( !gl ) {
 		throw "Couldn't get WebGL context";
@@ -224,8 +227,8 @@ var WebGLImageFilter = window.WebGLImageFilter = function() {
 	};
 
 	var _compileShader = function( fragmentSource ) {
-		if( fragmentSource.__program ) {
-			_currentProgram = fragmentSource.__program;
+		if (_shaderProgramCache[fragmentSource]) {
+			_currentProgram = _shaderProgramCache[fragmentSource];
 			gl.useProgram(_currentProgram.id);
 			return _currentProgram;
 		}
@@ -240,7 +243,7 @@ var WebGLImageFilter = window.WebGLImageFilter = function() {
 		gl.enableVertexAttribArray(_currentProgram.attribute.uv);
 		gl.vertexAttribPointer(_currentProgram.attribute.uv, 2, gl.FLOAT, false, vertSize, 2 * floatSize);
 
-		fragmentSource.__program = _currentProgram;
+		_shaderProgramCache[fragmentSource] = _currentProgram;
 		return _currentProgram;
 	};
 
