@@ -1,13 +1,12 @@
 WebGLImageFilter
 ==========
 
-#### Fast image filters for Browsers with WebGL support ####
+Construct a chain of image filters and apply them to an Image or Canvas element.
+All filters are executed by WebGL Shaders which makes them pretty fast.
 
-MIT License
 
 Demo: [phoboslab.org/log/2013/11/webgl-image-filter](http://phoboslab.org/log/2013/11/fast-image-filters-with-webgl)
 
-Construct a chain of image filters and apply them to an Image or Canvas element. All filters are executed by WebGL Shaders which makes them pretty fast.
 
 Please also have a look at the excellent [glfx.js](https://github.com/evanw/glfx.js) by @evanw.
 
@@ -29,6 +28,8 @@ catch( err ) {
 filter.addFilter('hue', 180);
 filter.addFilter('negative');
 filter.addFilter('blur', 7);
+
+// inputImage may be an Image, or even an HTML Canvas!
 var filteredImage = filter.apply(inputImage);
 
 // The 'filteredImage' is a canvas element. You can draw it on a 2D canvas
@@ -39,17 +40,40 @@ var filteredImage = filter.apply(inputImage);
 filter.reset();
 ```
 
+#### Using an Existing Canvas element
+
+Internally, WebGLImageFilter creates one canvas element, which is what the output filtered result is written to.
+If you have an existing `canvas` element that you want to render to, you can configure WebGLImageFilter to use it:
+
+```javascript
+
+try {
+	// in this case, filteredImage is an existing html canvas
+	var filter = new WebGLImageFilter({ canvas: filteredImage });
+}
+catch( err ) { }
+
+// .. filters setup here
+
+filter.apply(inputImage); 
+
+// at this point, filteredImage has already been updated
+
+```
+
+
 ### Filters ###
 
 #### Main filters ####
 - `colorMatrix( matrix )` apply a the 5x5 color matrix (`Array[20]`), similar to Flash's ColorMatrixFilter
 - `convolution( matrix )` apply a 3x3 convolution matrix (`Array[9]`)
-- `blur( size )` blur with size in pixels
+- `blur( radius )` blur with radius in pixels
+
 
 #### Presets using the main filters ####
-- `brightness( amount )` change brightness. `1` increases the it two fold, `-1` halfes it
-- `saturation( amount )` change saturation. `1` increases the it two fold, `-1` halfes it
-- `contrast( amount )` change contrast. `1` increases the it two fold, `-1` halfes it
+- `brightness( amount )` change brightness. `1` increases the it two fold, `-1` halves it
+- `saturation( amount )` change saturation. `1` increases the it two fold, `-1` halves it
+- `contrast( amount )` change contrast. `1` increases the it two fold, `-1` halves it
 - `negative()` invert colors
 - `hue( rotation )` rotate the hue, values are `0-360`
 - `desaturate()` desaturate the image by all channels equally
@@ -66,3 +90,7 @@ filter.reset();
 - `emboss( size )` emboss effect with size in pixels
 - `polaroid()` polaroid camera effect
 - `shiftToBGR()` shift colors from RGB to BGR
+
+
+#### License
+MIT
