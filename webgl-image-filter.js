@@ -592,6 +592,38 @@ var WebGLImageFilter = window.WebGLImageFilter = function (params) {
 			'gl_FragColor += texture2D(texture, vUv + vec2( 7.0*px.x,  7.0*px.y))*0.0044299121055113265;',
 		'}',
 	].join('\n');
+
+
+	// -------------------------------------------------------------------------
+	// Pixelate Filter
+
+	_filter.pixelate = function( size ) {
+		var blurSizeX = (size) / _width;
+		var blurSizeY = (size) / _height;
+
+		var program = _compileShader(_filter.pixelate.SHADER);
+
+		// Horizontal
+		gl.uniform2f(program.uniform.size, blurSizeX, blurSizeY);
+		_draw();
+	};
+
+	_filter.pixelate.SHADER = [
+		'precision highp float;',
+		'varying vec2 vUv;',
+		'uniform vec2 size;',
+		'uniform sampler2D texture;',
+
+		'vec2 pixelate(vec2 coord, vec2 size) {',
+			'return floor( coord / size ) * size;',
+		'}',
+
+		'void main(void) {',
+			'gl_FragColor = vec4(0.0);',
+			'vec2 coord = pixelate(vUv, size);',
+			'gl_FragColor += texture2D(texture, coord);',
+		'}',
+	].join('\n');
 };
 
 })(window);
