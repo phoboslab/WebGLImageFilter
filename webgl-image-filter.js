@@ -103,8 +103,10 @@ var WebGLImageFilter = window.WebGLImageFilter = function (params) {
 		_resize( image.width, image.height );
 		_drawCount = 0;
 
-		// Create the texture for the input image
-		_sourceTexture = gl.createTexture();
+		// Create the texture for the input image if we haven't yet
+		if (!_sourceTexture)
+			_sourceTexture = gl.createTexture();
+
 		gl.bindTexture(gl.TEXTURE_2D, _sourceTexture);
 		gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
 		gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
