@@ -90,6 +90,7 @@ filter.apply(inputImage);
 - `emboss( size )` emboss effect with size in pixels
 - `polaroid()` polaroid camera effect
 - `shiftToBGR()` shift colors from RGB to BGR
+- `pixelate(amount)` pixelate 
 
 
 #### License
