@@ -65,7 +65,7 @@ filter.apply(inputImage);
 ### Filters ###
 
 #### Main filters ####
-- `colorMatrix( matrix )` apply a the 5x5 color matrix (`Array[20]`), similar to Flash's ColorMatrixFilter
+- `colorMatrix( matrix , amount=1)` apply a the 5x5 color matrix (`Array[20]`), similar to Flash's ColorMatrixFilter
 - `convolution( matrix )` apply a 3x3 convolution matrix (`Array[9]`)
 - `blur( radius )` blur with radius in pixels
 
@@ -77,12 +77,12 @@ filter.apply(inputImage);
 - `negative()` invert colors
 - `hue( rotation )` rotate the hue, values are `0-360`
 - `desaturate()` desaturate the image by all channels equally
-- `desaturateLuminance()` desaturate the image taking the natural luminace of each channel into acocunt
-- `sepia()` sepia colors
-- `brownie()` vintage colors
-- `vintagePinhole()` vintage colors
-- `kodachrome()` vintage colors
-- `technicolor()` vintage colors
+- `desaturateLuminance( amount=1 )` desaturate the image taking the natural luminance of each channel into account
+- `sepia( amount=1 )` sepia colors
+- `brownie( amount=1 )` vintage colors
+- `vintagePinhole( amount=1 )` vintage colors
+- `kodachrome( amount=1 )` vintage colors
+- `technicolor( amount=1 )` vintage colors
 - `detectEdges()` detect edges
 - `sobelX()` detect edges using a horizontal sobel operator
 - `sobelY()` detect edges using a vertical sobel operator
