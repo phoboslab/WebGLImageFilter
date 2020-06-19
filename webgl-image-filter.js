@@ -295,6 +295,55 @@ var WebGLImageFilter = window.WebGLImageFilter = function (params) {
 	// -------------------------------------------------------------------------
 	// Color Matrix Filter
 
+	_filter.blend = function( image, mode, amount = 1 ) {
+		const texture = gl.createTexture();
+
+		gl.activeTexture(gl.TEXTURE1);
+		gl.bindTexture(gl.TEXTURE_2D, texture);
+		gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+		gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+		gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+		gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+		gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
+		gl.activeTexture(gl.TEXTURE0);
+
+		const shader = _filter.blend.SHADER(_filter.blend.modes[mode]);
+		const program = _compileShader(shader);
+		gl.uniform1i(program.uniform.top, 1);
+		gl.uniform1f(program.uniform.amount, amount);
+
+		_draw();
+	};
+
+	const clamp = expr => `max(min(${expr}, 1.0), 0.0)`;
+	_filter.blend.SHADER = formula => [
+		'precision highp float;',
+		'varying vec2 vUv;',
+		'uniform sampler2D top;',
+		'uniform sampler2D texture;',
+		'uniform float amount;',
+		'vec4 unit = vec4(1.0, 1.0, 1.0, 1.0);',
+
+		'void main(void) {',
+			'vec4 a = texture2D(top, vUv);',
+			'vec4 b = texture2D(texture, vUv);',
+			`vec4 col = ${clamp(formula)};`,
+			'gl_FragColor = col * amount + b * (1.0 - amount);',
+		'}',
+	].join('\n');
+
+	_filter.blend.modes = {
+		normal: 'a',
+		add: 'a + b',
+		multiply: 'a * b',
+		screen: '1.0 - (1.0 - a) * (1.0 - b)',
+		overlay: 'b * (b + 2.0 * a * (1.0 - b))',
+		darken: 'min(a, b)',
+		lighten: 'max(a, b)',
+		exclusion: `a + b - ${clamp('(2.0 * b * a)')}`,
+		'color-burn': `unit - ((unit - b) / a)`,
+	};
+
 	_filter.colorMatrix = function( matrix , amount = 1 ) {
 		matrix = matrix.map((coef, index) => weightedAvg(coef, identityMatrix[index], amount));
 		// Create a Float32 Array and normalize the offset component to 0-1

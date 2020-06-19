@@ -65,9 +65,19 @@ filter.apply(inputImage);
 ### Filters ###
 
 #### Main filters ####
-- `colorMatrix( matrix , amount=1)` apply a the 5x5 color matrix (`Array[20]`), similar to Flash's ColorMatrixFilter
+- `colorMatrix( matrix , amount=1)` apply a 5x5 color matrix (`Array[20]`), similar to Flash's ColorMatrixFilter
 - `convolution( matrix )` apply a 3x3 convolution matrix (`Array[9]`)
 - `blur( radius )` blur with radius in pixels
+- `blend( image, mode, amount=1 )` overlays an image or canvas using the specified blending mode. Available modes are:
+  * normal
+  * add
+  * multiply
+  * screen
+  * overlay
+  * darken
+  * lighten
+  * exclusion
+  * color-burn
 
 
 #### Presets using the main filters ####
