@@ -98,6 +98,8 @@ var WebGLImageFilter = window.WebGLImageFilter = function (params) {
 	this.reset = function() {
 		_filterChain = [];
 	};
+
+	var applied = false;
 	
 	this.apply = function( image ) {
 		_resize( image.width, image.height );
@@ -112,7 +114,12 @@ var WebGLImageFilter = window.WebGLImageFilter = function (params) {
 		gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
 		gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
 		gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST); 
-		gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
+		if (!applied) {
+			gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
+			applied = true;
+		} else {
+			gl.texSubImage2D(gl.TEXTURE_2D, 0, 0, 0, gl.RGBA, gl.UNSIGNED_BYTE, image);
+		}
 
 		// No filters? Just draw
 		if( _filterChain.length == 0 ) {
